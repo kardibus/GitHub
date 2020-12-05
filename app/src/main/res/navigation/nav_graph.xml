@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/articleFragment">
+    <fragment
+        android:id="@+id/articleFragment"
+        android:name="com.kardibus.github.ui.users.UsersFragment"
+        android:label="fragment_article"
+        tools:layout="@layout/fragment_user">
+        <action
+            android:id="@+id/action_articleFragment_to_articleDetailsFragment"
+            app:destination="@id/articleDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/articleDetailsFragment"
+        android:name="com.kardibus.github.ui.userdetails.UserDetailsFragment"
+        android:label="fragment_article_details"
+        tools:layout="@layout/fragment_user_details" >
+        <action
+            android:id="@+id/action_articleDetailsFragment_to_articleFragment"
+            app:destination="@id/articleFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right" />
+    </fragment>
+
+</navigation>

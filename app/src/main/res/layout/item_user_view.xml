@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.kardibus.github.ui.users.UsersItemViewModel" />
+    </data>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
+            app:cardBackgroundColor="@color/black"
+            android:onClick="@{() -> viewModel.onItemClick()}"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/coverImageView"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:scaleType="centerInside"
+                    android:adjustViewBounds="true"
+                    android:layout_marginLeft="30dp"
+                    app:imageUrl="@{viewModel.imageUrl}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/titleTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="2"
+                        android:layout_marginStart="120dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginTop="20dp"
+                        app:layout_constraintBottom_toTopOf="@id/authorTextView"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginBottom="14dp"
+                        android:text="@{viewModel.title}"
+                        android:textColor="@color/title_color"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        tools:text="id user" />
+
+                    <TextView
+                        android:id="@+id/authorTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:singleLine="true"
+                        android:layout_marginStart="124dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginBottom="12dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:text="@{viewModel.login}"
+                        android:textColor="@color/publisher_color"
+                        android:textSize="12sp"
+                        tools:text="CNN"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="0dp" />
+
+                        <TextView
+                            android:id="@+id/dateTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="0dp"
+                            android:layout_marginBottom="12dp"
+                            android:singleLine="true"
+                            app:layout_constraintStart_toEndOf="@+id/authorTextView"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:textColor="@color/publisher_color"
+                            android:textSize="12sp"
+                            tools:text="2019-09-19"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="0dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+</layout>
