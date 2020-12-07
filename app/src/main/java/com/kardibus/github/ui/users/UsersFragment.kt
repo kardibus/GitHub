@@ -11,6 +11,7 @@ import com.kardibus.github.AppConstants
 import com.kardibus.github.BR
 import com.kardibus.github.R
 import com.kardibus.github.ViewModelProviderFactory
+import com.kardibus.github.data.model.TotalCount
 import com.kardibus.github.databinding.FragmentUserBinding
 import com.kardibus.github.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_user.*
@@ -23,6 +24,7 @@ class UsersFragment : BaseFragment<FragmentUserBinding, UsersViewModel>(),
     lateinit var usersAdapter: UsersAdapter
     private var usersViewModel: UsersViewModel? = null
     private var page:Int = 1
+
 
     override val bindingVariable: Int
         get() = BR.viewModel
@@ -88,6 +90,7 @@ class UsersFragment : BaseFragment<FragmentUserBinding, UsersViewModel>(),
         toolbar_title.run {
             toolbar_title.run { toolbar_title.typeface = typeface }
         }
+
     }
 
     private fun setUp() {

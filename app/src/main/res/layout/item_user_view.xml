@@ -83,6 +83,7 @@
                             android:textColor="@color/publisher_color"
                             android:textSize="12sp"
                             tools:text="2019-09-19"
+                            android:text="@{viewModel.totalCount}"
                             android:layout_marginLeft="16dp"
                             android:layout_marginRight="0dp" />
             </androidx.constraintlayout.widget.ConstraintLayout>

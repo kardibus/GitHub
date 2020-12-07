@@ -8,5 +8,5 @@ data class UsersApiResponse(val login:String,val id:Long,val node_id:String,val 
                      val repos_url:String,val events_url:String,val received_events_url:String,val type:String,
                      val site_admin:Boolean) {
 }
-class ResultUsers(val total_count:Long,val incomplete_results:Boolean,
-             @SerializedName("items") val items:ArrayList<UsersApiResponse>?=null)
+class ResultUsers(var total_count:Long, val incomplete_results:Boolean,
+                  @SerializedName("items") val items:ArrayList<UsersApiResponse>?=null)

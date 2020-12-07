@@ -4,10 +4,12 @@ import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.widget.Toast
+import androidx.databinding.ObservableField
 import androidx.lifecycle.viewModelScope
 import com.example.githubapp.models.ResultUsers
 import com.kardibus.github.data.AppDataManager
 import com.kardibus.github.data.model.Result
+import com.kardibus.github.data.model.TotalCount
 import com.kardibus.github.data.model.db.User
 import com.kardibus.github.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
@@ -19,15 +21,20 @@ class UsersViewModel(
 ) : BaseViewModel<UsersNavigator>(application, appDataManager) {
 
     private val usersLiveData: MutableList<UsersDataItem> = mutableListOf()
+    var totalCount: ObservableField<TotalCount> = ObservableField<TotalCount>()
 
     fun onBackClick(){
-        usersLiveData.clear()
-        navigator?.back()
+        if (totalCount.get()?.totalCount!! > totalCount.get()?.per!! && totalCount.get()?.page!=1) {
+            usersLiveData.clear()
+            navigator?.back()
+        }
     }
 
     fun onMoreClick(){
-        usersLiveData.clear()
-        navigator?.more()
+        if (totalCount.get()?.totalCount!! > totalCount.get()?.per!!) {
+            usersLiveData.clear()
+            navigator?.more()
+        }
     }
 
     fun onSearchClick(){
@@ -43,6 +50,8 @@ class UsersViewModel(
                     is Result.Success<ResultUsers> -> {
                         result.data.let { navigator?.setData(mapUsersDataItem(it)) }
                         setIsLoading(false)
+
+                        totalCountPage(result.data.total_count,page,per)
                     }
                     is Result.Error -> {
                         setIsLoading(false)
@@ -55,7 +64,6 @@ class UsersViewModel(
         }
     }
 
-
     private fun isOnline(context: Context): Boolean {
         val connectivityManager =
                 context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -63,19 +71,32 @@ class UsersViewModel(
         return networkInfo != null && networkInfo.isConnected
     }
 
-    private fun mapUsersDataItem(users: ResultUsers): List<UsersDataItem> {
+    fun totalCountPage(total:Long,page:Int,per:Int){
 
+        var pageWithUsers:Int = page
+        var perNumber:Int = per
+        var totalCountUsersOnPage:Long = total
+
+        if (totalCountUsersOnPage>30) {
+            pageWithUsers *= perNumber
+        }
+
+        totalCountUsersOnPage -= pageWithUsers - 1
+
+        totalCount.set(TotalCount(totalCount = totalCountUsersOnPage,pageWithUsers = pageWithUsers,page=page,per=perNumber))
+    }
+
+    private fun mapUsersDataItem(users: ResultUsers): List<UsersDataItem> {
         for (userDataItem in users.items!!) {
             val user= UsersDataItem(
                 userDataItem.login
                 , userDataItem.avatar_url
                 , userDataItem.node_id
-                , userDataItem.gravatar_id
+                , users.total_count.toString()
                 , userDataItem.url)
             insertArticle(user)
             usersLiveData.add(user)
         }
-
         return usersLiveData
     }
 
