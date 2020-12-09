@@ -31,7 +31,7 @@ class UsersViewModel(
     }
 
     fun onMoreClick(){
-        if (totalCount.get()?.totalCount!! > totalCount.get()?.per!!) {
+        if (totalCount.get()?.totalCount!! > 1 ) {
             usersLiveData.clear()
             navigator?.more()
         }
@@ -73,15 +73,21 @@ class UsersViewModel(
 
     fun totalCountPage(total:Long,page:Int,per:Int){
 
-        var pageWithUsers:Int = page
-        var perNumber:Int = per
-        var totalCountUsersOnPage:Long = total
+        var pageWithUsers:Int = 0
+        var perNumber:Int = 0
+        var totalCountUsersOnPage:Long = 0
 
-        if (totalCountUsersOnPage>30) {
-            pageWithUsers *= perNumber
-        }
+        perNumber = per
+        totalCountUsersOnPage = total
+        pageWithUsers = page
+        pageWithUsers *=  per
+        totalCountUsersOnPage -= pageWithUsers
 
-        totalCountUsersOnPage -= pageWithUsers - 1
+            if (totalCountUsersOnPage < 0) {
+                totalCountUsersOnPage = 0
+            }
+
+
 
         totalCount.set(TotalCount(totalCount = totalCountUsersOnPage,pageWithUsers = pageWithUsers,page=page,per=perNumber))
     }
@@ -116,3 +122,4 @@ class UsersViewModel(
     }
 
 }
+
