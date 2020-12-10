@@ -14,5 +14,5 @@ class UsersItemViewModel(
 
     fun onItemClick() = onItemClick.invoke()
 
-    interface ArticleItemViewModelListener : BaseItemListener<UsersDataItem>
+    interface UsersItemViewModelListener : BaseItemListener<UsersDataItem>
 }

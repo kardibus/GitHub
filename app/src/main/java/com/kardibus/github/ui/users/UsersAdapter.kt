@@ -9,7 +9,7 @@ import com.kardibus.core.ui.BaseViewHolder
 import com.kardibus.github.R
 import com.kardibus.github.databinding.ItemUserViewBinding
 
-class UsersAdapter(items: MutableList<UsersDataItem>, listener: UsersItemViewModel.ArticleItemViewModelListener) :
+class UsersAdapter(items: MutableList<UsersDataItem>, listener: UsersItemViewModel.UsersItemViewModelListener) :
     BaseRecyclerViewAdapter<UsersDataItem>(items, listener) {
 
     private lateinit var context: Context
@@ -19,7 +19,7 @@ class UsersAdapter(items: MutableList<UsersDataItem>, listener: UsersItemViewMod
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
 
         context=parent.context
-        return ArticleViewHolder(
+        return UsersViewHolder(
             ItemUserViewBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent, false
@@ -27,7 +27,7 @@ class UsersAdapter(items: MutableList<UsersDataItem>, listener: UsersItemViewMod
         )
     }
 
-    inner class ArticleViewHolder(private val mBinding: ItemUserViewBinding) :
+    inner class UsersViewHolder(private val mBinding: ItemUserViewBinding) :
         BaseViewHolder(mBinding.root) {
         override fun onBind(position: Int) {
             val user = items[position]

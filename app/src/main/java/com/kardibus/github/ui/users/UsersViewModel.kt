@@ -24,7 +24,7 @@ class UsersViewModel(
     var totalCount: ObservableField<TotalCount> = ObservableField<TotalCount>()
 
     fun onBackClick(){
-        if (totalCount.get()?.totalCount!! > totalCount.get()?.per!! && totalCount.get()?.page!=1) {
+        if (totalCount.get()?.totalCount!! > -1!! && totalCount.get()?.page!=1) {
             usersLiveData.clear()
             navigator?.back()
         }
@@ -77,14 +77,20 @@ class UsersViewModel(
         var perNumber:Int = 0
         var totalCountUsersOnPage:Long = 0
 
-        perNumber = per
+
         totalCountUsersOnPage = total
         pageWithUsers = page
         pageWithUsers *=  per
-        totalCountUsersOnPage -= pageWithUsers
 
-            if (totalCountUsersOnPage < 0) {
+         perNumber =  totalCountUsersOnPage.toInt()  - pageWithUsers
+
+            if (perNumber < 0) {
+
+                perNumber = pageWithUsers - totalCountUsersOnPage.toInt()
+                pageWithUsers = pageWithUsers - perNumber
                 totalCountUsersOnPage = 0
+            }else{
+                totalCountUsersOnPage -= pageWithUsers
             }
 
 
@@ -100,22 +106,22 @@ class UsersViewModel(
                 , userDataItem.node_id
                 , users.total_count.toString()
                 , userDataItem.url)
-            insertArticle(user)
+            insertUser(user)
             usersLiveData.add(user)
         }
         return usersLiveData
     }
 
-    private fun insertArticle(articleDataItem: UsersDataItem) {
+    private fun insertUser(UserDataItem: UsersDataItem) {
         viewModelScope.launch {
-            appDataManager.getDbRepository().insertArticle(
+            appDataManager.getDbRepository().insertUser(
                 User(
-                    articleDataItem.title!!,
-                    articleDataItem.login
-                    , articleDataItem.imageUrl
-                    , articleDataItem.title
-                    , articleDataItem.total_count
-                    , articleDataItem.content
+                    UserDataItem.title!!,
+                    UserDataItem.login
+                    , UserDataItem.imageUrl
+                    , UserDataItem.title
+                    , UserDataItem.total_count
+                    , UserDataItem.content
                 )
             )
         }

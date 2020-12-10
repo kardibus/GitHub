@@ -11,14 +11,13 @@ import com.kardibus.github.AppConstants
 import com.kardibus.github.BR
 import com.kardibus.github.R
 import com.kardibus.github.ViewModelProviderFactory
-import com.kardibus.github.data.model.TotalCount
 import com.kardibus.github.databinding.FragmentUserBinding
 import com.kardibus.github.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_user.*
 import javax.inject.Inject
 
 class UsersFragment : BaseFragment<FragmentUserBinding, UsersViewModel>(),
-    UsersNavigator, UsersItemViewModel.ArticleItemViewModelListener {
+    UsersNavigator, UsersItemViewModel.UsersItemViewModelListener {
     @Inject
     lateinit var factory: ViewModelProviderFactory
     lateinit var usersAdapter: UsersAdapter
@@ -62,17 +61,17 @@ class UsersFragment : BaseFragment<FragmentUserBinding, UsersViewModel>(),
     }
 
     override fun search() {
-        viewModel.fetchUsers(txt_user_search.text.toString(),page = 1,30)
+        viewModel.fetchUsers(txt_user_search.text.toString(),page = 1,per = AppConstants.PAGE)
     }
 
     override fun more() {
         ++page
-        viewModel.fetchUsers(txt_user_search.text.toString(),page = page,30)
+        viewModel.fetchUsers(txt_user_search.text.toString(),page = page,per = AppConstants.PAGE)
     }
 
     override fun back() {
         --page
-        viewModel.fetchUsers(txt_user_search.text.toString(),page = page,30)
+        viewModel.fetchUsers(txt_user_search.text.toString(),page = page,per = AppConstants.PAGE )
     }
 
 

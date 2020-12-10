@@ -13,9 +13,9 @@ class UserDetailsViewModel(
     appDataManager: AppDataManager
 ) : BaseViewModel<UserDetailsNavigator>(application, appDataManager) {
 
-    private fun insertArticle(usersDataItem: UsersDataItem) {
+    private fun insertUser(usersDataItem: UsersDataItem) {
         viewModelScope.launch {
-            appDataManager.getDbRepository().insertArticle(
+            appDataManager.getDbRepository().insertUser(
                 User(
                     usersDataItem.title!!,
                     usersDataItem.login

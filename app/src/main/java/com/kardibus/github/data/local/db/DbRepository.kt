@@ -8,9 +8,9 @@ import javax.inject.Singleton
 @Singleton
 class DbRepository @Inject constructor(private val mAppDatabase: AppDatabase) : DbDataSource {
 
-    override suspend fun insertArticle(user: User) = mAppDatabase.articleDao().insert(user)
+    override suspend fun insertUser(user: User) = mAppDatabase.articleDao().insert(user)
 
-    override fun allArticles(): LiveData<List<User>> {
+    override fun allUser(): LiveData<List<User>> {
         return mAppDatabase.articleDao().loadAll()
     }
 
