@@ -21,6 +21,7 @@ class UserDetailsFragment :
     lateinit var factory: ViewModelProviderFactory
     private var userDetailsViewModel: UserDetailsViewModel? = null
     private var usersDataItem: UsersDataItem? = null
+    private var userDetailDataItem:UserDetailDataItem?=null
 
     override val bindingVariable: Int
         get() = BR.viewModel
@@ -40,6 +41,7 @@ class UserDetailsFragment :
         userDetailsViewModel?.setNavigator(this)
         if (arguments != null) {
             usersDataItem = arguments?.getParcelable(AppConstants.USER)
+            viewModel.fetchUsers(usersDataItem?.login.toString())
         }
     }
 
@@ -73,9 +75,7 @@ class UserDetailsFragment :
     }
 
     private fun setUser() {
-        if (usersDataItem != null) {
-            getViewDataBinding().user = usersDataItem
-        }
+
     }
 
     private fun setUpToolbar() {
@@ -84,5 +84,13 @@ class UserDetailsFragment :
                 activity?.onBackPressed()
             }
         }
+    }
+
+    override fun handleError(message: String?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun setData(data: List<Any>) {
+            getViewDataBinding().user = data.get(0) as UserDetailDataItem?
     }
 }

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="user"
-            type="com.kardibus.github.ui.users.UsersDataItem" />
+            type="com.kardibus.github.ui.userdetails.UserDetailDataItem" />
 
         <variable
             name="viewModel"
@@ -40,7 +40,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="250dp"
                         android:scaleType="fitXY"
-                        app:imageUrl="@{user.imageUrl}"
+                        app:imageUrl="@{user.avatar_url}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.145"
@@ -54,7 +54,7 @@
                         android:layout_marginLeft="24dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginRight="24dp"
-                        android:text="@{user.title}"
+                        android:text="@{user.login}"
                         android:textColor="@color/title_color"
                         android:textSize="29sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -71,7 +71,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="36dp"
                         android:layout_marginBottom="116dp"
-                        android:text="@{user.login}"
+                        android:text="@{user.email}"
                         android:textColor="@color/white"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toTopOf="@id/contentTextView"
@@ -85,7 +85,7 @@
                         android:layout_marginBottom="32dp"
                         android:scrollbarAlwaysDrawVerticalTrack="true"
                         android:singleLine="false"
-                        android:text="@{user.content}"
+                        android:text="@{user.followers}"
                         android:textColor="@color/publisher_color"
                         android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="parent"
