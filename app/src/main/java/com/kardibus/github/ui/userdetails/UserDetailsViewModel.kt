@@ -18,7 +18,7 @@ class UserDetailsViewModel(
     private val usersLiveData: MutableList<UserDetailDataItem> = mutableListOf()
 
 
-    fun fetchUsers(login: String) {
+    fun fetchUser(login: String) {
         if (isOnline(application)) {
             viewModelScope.launch {
                 setIsLoading(true)
@@ -26,7 +26,6 @@ class UserDetailsViewModel(
                     is Result.Success<UserApiResponse> -> {
                         result.data.let { navigator?.setData(mapUsersDataItem(it))}
                         setIsLoading(false)
-
                     }
                     is Result.Error -> {
                         setIsLoading(false)

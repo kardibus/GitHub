@@ -2,6 +2,7 @@ package com.kardibus.github.ui.userdetails
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.ViewModelProvider
 import com.kardibus.github.AppConstants
@@ -15,13 +16,11 @@ import kotlinx.android.synthetic.main.fragment_user_details.*
 import javax.inject.Inject
 
 class UserDetailsFragment :
-    BaseFragment<FragmentUserDetailsBinding, UserDetailsViewModel>(),
-    UserDetailsNavigator {
+    BaseFragment<FragmentUserDetailsBinding, UserDetailsViewModel>(),UserDetailsNavigator{
     @Inject
     lateinit var factory: ViewModelProviderFactory
     private var userDetailsViewModel: UserDetailsViewModel? = null
     private var usersDataItem: UsersDataItem? = null
-    private var userDetailDataItem:UserDetailDataItem?=null
 
     override val bindingVariable: Int
         get() = BR.viewModel
@@ -41,7 +40,7 @@ class UserDetailsFragment :
         userDetailsViewModel?.setNavigator(this)
         if (arguments != null) {
             usersDataItem = arguments?.getParcelable(AppConstants.USER)
-            viewModel.fetchUsers(usersDataItem?.login.toString())
+            viewModel.fetchUser(usersDataItem?.login.toString())
         }
     }
 
@@ -50,32 +49,21 @@ class UserDetailsFragment :
         savedInstanceState: Bundle?
     ) {
         super.onViewCreated(view, savedInstanceState)
-        setUp()
 
         val typefaceBold = ResourcesCompat.getFont(requireActivity().applicationContext, R.font.bold)
-        titleTextView.run {
-            titleTextView.run { titleTextView.typeface = typefaceBold }
+        loginTextView.run {
+            loginTextView.run { loginTextView.typeface = typefaceBold }
         }
         val typefaceRegurlar = ResourcesCompat.getFont(requireActivity().applicationContext, R.font.regular)
-        authorTextView.run {
-            authorTextView.run { authorTextView.typeface = typefaceRegurlar }
+        emailTextView.run {
+            emailTextView.run { emailTextView.typeface = typefaceRegurlar }
         }
-        contentTextView.run {
-            contentTextView.run { contentTextView.typeface = typefaceRegurlar }
+        followerTextView.run {
+            followerTextView.run { followerTextView.typeface = typefaceRegurlar }
         }
         dateTextView.run {
             dateTextView.run { dateTextView.typeface = typefaceRegurlar }
         }
-    }
-
-    private fun setUp() {
-        setUpToolbar()
-        setUser()
-
-    }
-
-    private fun setUser() {
-
     }
 
     private fun setUpToolbar() {
@@ -87,10 +75,10 @@ class UserDetailsFragment :
     }
 
     override fun handleError(message: String?) {
-        TODO("Not yet implemented")
+        Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
     }
 
     override fun setData(data: List<Any>) {
-            getViewDataBinding().user = data.get(0) as UserDetailDataItem?
+        getViewDataBinding().user=data.get(0) as UserDetailDataItem
     }
 }

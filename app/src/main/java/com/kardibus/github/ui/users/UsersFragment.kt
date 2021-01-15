@@ -89,7 +89,6 @@ class UsersFragment : BaseFragment<FragmentUserBinding, UsersViewModel>(),
         toolbar_title.run {
             toolbar_title.run { toolbar_title.typeface = typeface }
         }
-
     }
 
     private fun setUp() {
