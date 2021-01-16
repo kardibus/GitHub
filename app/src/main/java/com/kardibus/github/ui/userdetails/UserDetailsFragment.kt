@@ -61,8 +61,8 @@ class UserDetailsFragment :
         followerTextView.run {
             followerTextView.run { followerTextView.typeface = typefaceRegurlar }
         }
-        dateTextView.run {
-            dateTextView.run { dateTextView.typeface = typefaceRegurlar }
+        dateCreateTextView.run {
+            dateCreateTextView.run { dateCreateTextView.typeface = typefaceRegurlar }
         }
     }
 

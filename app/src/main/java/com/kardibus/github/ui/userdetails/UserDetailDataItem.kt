@@ -9,9 +9,19 @@ class UserDetailDataItem (
     val email:String?,
     val bio: String?,
     val public_repos:String?,
+    val created_at:String?,
+    val updated_at:String?,
+    val public_gists:String?,
+    val name:String?,
+    val location:String?,
     val followers: String?,
     val following: String?):Parcelable {
     constructor(parcel: Parcel) : this(
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
             parcel.readString(),
             parcel.readString(),
             parcel.readString(),
@@ -27,6 +37,11 @@ class UserDetailDataItem (
         parcel.writeString(email)
         parcel.writeString(bio)
         parcel.writeString(public_repos)
+        parcel.writeString(created_at)
+        parcel.writeString(updated_at)
+        parcel.writeString(public_gists)
+        parcel.writeString(name)
+        parcel.writeString(location)
         parcel.writeString(followers)
         parcel.writeString(following)
     }

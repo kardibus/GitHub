@@ -49,84 +49,128 @@
                         tools:layout_editor_absoluteX="0dp" />
                 </androidx.cardview.widget.CardView>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginRight="24dp"
-                    android:text="Login"
-                    android:textColor="@color/white"
-                    android:textSize="29sp"
-                    app:layout_constraintEnd_toStartOf="@id/loginTextView"
-                    app:layout_constraintHorizontal_bias="0.583"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/cardView_user">
-
-                </TextView>
 
                 <TextView
                     android:id="@+id/loginTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="24dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginRight="24dp"
                     android:text="@{user.login}"
                     android:textColor="@color/title_color"
                     android:textSize="29sp"
-
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.629"
+                    app:layout_constraintHorizontal_bias="0.482"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/cardView_user"
                     tools:text="Login" />
 
                 <TextView
+                    android:id="@+id/nameTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="24dp"
+                    android:text="@{user.name}"
+                    android:textColor="@color/title_color"
+                    android:textSize="29sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.494"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/loginTextView"
+                    tools:text="Name" />
+
+                <TextView
                     android:id="@+id/emailTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="44dp"
+                    android:layout_marginTop="8dp"
                     android:text="@{user.email}"
                     android:textColor="@color/white"
-                    android:textSize="20sp"
 
+                    android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.598"
+                    app:layout_constraintHorizontal_bias="0.515"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/loginTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/nameTextView"
                     tools:text="Email" />
 
                 <TextView
                     android:id="@+id/followerTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="8dp"
                     android:scrollbarAlwaysDrawVerticalTrack="true"
                     android:singleLine="false"
                     android:text="@{user.followers}"
                     android:textColor="@color/publisher_color"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.611"
+                    app:layout_constraintHorizontal_bias="0.504"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/emailTextView"
                     tools:text="followers" />
 
                 <TextView
-                    android:id="@+id/dateTextView"
+                    android:id="@+id/followingTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="52dp"
+                    android:layout_marginTop="8dp"
+                    android:scrollbarAlwaysDrawVerticalTrack="true"
+                    android:singleLine="false"
+                    android:text="@{user.following}"
+                    android:textColor="@color/publisher_color"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.521"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/followerTextView"
+                    tools:text="following" />
 
+                <TextView
+                    android:id="@+id/locationTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:scrollbarAlwaysDrawVerticalTrack="true"
+                    android:singleLine="false"
+                    android:text="@{user.location}"
+                    android:textColor="@color/publisher_color"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.526"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/followingTextView"
+                    tools:text="location" />
+
+                <TextView
+                    android:id="@+id/dateCreateTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
                     android:singleLine="true"
+                    android:text="@{user.created_at}"
                     android:textColor="@color/title_color"
-
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.639"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/followerTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/locationTextView"
+                    tools:text="2019-09-19" />
+
+                <TextView
+                    android:id="@+id/dateUpdatedTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:singleLine="true"
+                    android:text="@{user.updated_at}"
+                    android:textColor="@color/title_color"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dateCreateTextView"
                     tools:text="2019-09-19" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

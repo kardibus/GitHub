@@ -53,7 +53,12 @@ class UserDetailsViewModel(
                     users.bio,
                     users.public_repos,
                     users.followers,
-                    users.following
+                    users.following,
+                    users.public_gists,
+                    users.name,
+                    users.location,
+                    users.created_at.toString(),
+                    users.updated_at.toString(),
             )
             usersLiveData.add(user)
 
